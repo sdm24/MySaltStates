@@ -1,0 +1,19 @@
+# This file is managed by Salt!!
+# Any changes will be overwritten!!
+
+#This file describes the network interfaces available on your system
+#and how to activate them. For more information, see interfaces(5).
+
+#The Loopback network Interface
+auto lo
+iface lo inet loopback
+
+#The primary network Interface
+auto eth0
+iface eth0 inet static
+address {{ IPaddr }}
+netmask 255.255.0.0
+gateway 10.1.0.1
+broadcast 10.1.255.255
+dns-nameservers 10.1.1.1 10.1.1.2
+dns-search {{ domname }}

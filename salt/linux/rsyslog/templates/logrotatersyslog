@@ -1,0 +1,15 @@
+# This file is managed by Salt!!
+# Any changes will be overwritten!!
+/var/log/syslog /var/log/mail.log /var/log/auth.log
+{
+	rotate 7
+	daily
+	missingok
+	notifempty
+	delaycompress
+	compress
+        sharedscripts
+	postrotate
+		reload rsyslog >/dev/null 2>&1 || true
+	endscript
+}
