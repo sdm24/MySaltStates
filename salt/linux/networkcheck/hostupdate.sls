@@ -7,7 +7,7 @@ edit hosts file:
     - source: salt://linux/networkcheck/templates/hosts
     - template: jinja
     - defaults: 
-        hname: {{ grains['nodename'] }}
+        hname: {{ grains['host'] }}
         fqdnIP: {{ grains['fqdn_ip4'][0] }}
         domname: {{ grains['domain'] }}
     - backup: minion
@@ -18,7 +18,7 @@ edit hostname file:
     - source: salt://linux/networkcheck/templates/hostname
     - template: jinja
     - defaults:
-        hname: {{ grains['nodename'] }}
+        hname: {{ grains['host'] }}
     - backup: minion
 
 
@@ -30,7 +30,7 @@ edit minionid file:
     - defaults:
         minid: {{ grains['id'] }}
 {% if grains['id'] is not defined %}
-        minid: {{ grains['nodename'] }}
+        minid: {{ grains['host'] }}
 {% endif %}
     - backup: minion
 
