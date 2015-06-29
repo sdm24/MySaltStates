@@ -6,7 +6,7 @@
 
 {% set DNSIP = salt['dnsutil.A'](name + "example.com")[0] %}
 
-{% set DNSIP2 = salt['dnsutil.A'(name + ".ad.example.com")[0] %}
+{% set DNSIP2 = salt['dnsutil.A'](name + ".ad.example.com")[0] %}
 
 {% set netname = salt['network.interfaces_names']()[0] %}
 
