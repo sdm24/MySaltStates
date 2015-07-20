@@ -1,5 +1,5 @@
 # This state will upgrade Splunk Forwarder for Windows minions
-# The installer and repo settings are located in /srv/salt/win
+# The installer and repo settings are located in /srv/salt/files/windows
 # It will only run if Splunk is already installed at C:\Program Files\SplunkUniversalForwarder\
 
 Splunk:

@@ -1,5 +1,5 @@
 # This state will check the C:\salt\conf\minion configuration file, making sure that the minion ID is correctly set
-# If the VM is on a different domain than ad.example.com, this state will print out the VM's name and its domain
+# If the VM is on a different domain than prod.{{ pillar['domain'] }}, this state will print out the VM's name and its domain
 # When run, this state will include network
 
 prepend minion:
@@ -17,14 +17,14 @@ replace minion:
     - repl: 'id: {{ grains['host'] }}'
 {% elif grains['id'] == 'desired_hostname' %}
     - repl: 'id: {{ grains['host'] }}'
-{% elif grains['id'] == 'wintemplate' %}
+{% elif grains['id'] == 'win2012full' %}
     - repl: 'id: {{ grains['host'] }}'
 {% else %}
     - repl: 'id: {{ grains['id'] }}'
 {% endif %}
 
-{% if grains['windowsdomain'] != 'ad.example.com' %}
-# If a minion is not on ad.example.com, this will print out what domain it is on
+{% if grains['windowsdomain'] != 'prod.'+pillar['domain'] %}
+# If a minion is not on prod.domain, this will print out what domain it is on
 check domain:
   module.run:
     - name: cmd.run_stdout

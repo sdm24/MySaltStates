@@ -10,7 +10,7 @@ remove old file:
 
 {% for server, hostinfo in salt['mine.get']('*', 'grains.item').items() %}
 
-{% set DNSIP = salt['dnsutil.A'](hostinfo['host'] + ".example.com")[0] %}
+{% set DNSIP = salt['dnsutil.A'](hostinfo['host'] + pillar['domain'])[0] %}
 
 {% if DNSIP is not defined %}
 {{ hostinfo['host'] }} not in DNS:

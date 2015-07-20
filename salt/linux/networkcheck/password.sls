@@ -12,5 +12,5 @@ replace passwd:
   file.replace:
     - name: /etc/passwd
     - pattern: root:x:0:0:root:/root:/bin/bash
-    - repl: 'root:x:0:0:{{ grains['nodename']|upper }}:/root:/bin/bash'
+    - repl: 'root:x:0:0:{{ grains['host']|upper }}:/root:/bin/bash'
     - backup: minion

@@ -10,8 +10,9 @@ user_seed:
     - name: '/opt/splunkforwarder/etc/system/local/user-seed.conf'
     - source: salt://linux/splunk/templates/userseed.conf
     - makedirs: True
+	- template: jinja
 {% if grains['id'].startswith('splunk') %}
-    - unless: 'test -d /opt/splunk'
+    - unless: 'test -d /etc'
 {% else%}
     - unless: 'dpkg -s splunkforwarder'
 {% endif %}
@@ -22,7 +23,7 @@ Splunk:
     - require:
       - file: installer
 {% if grains['id'].startswith('splunk') %}
-    - unless: 'test -d /opt/splunk'
+    - unless: 'test -d /etc'
 {% else%}
     - unless: 'dpkg -s splunkforwarder'
 {% endif %}
@@ -33,7 +34,7 @@ installer:
     - name: /tmp/splunkforwarder-current.deb 
     - source: salt://files/linux/splunk/splunkforwarder-current.deb
 {% if grains['id'].startswith('splunk') %}
-    - unless: 'test -d /opt/splunk'
+    - unless: 'test -d /etc'
 {% else%}
     - unless: 'dpkg -s splunkforwarder'
 {% endif %}
@@ -45,7 +46,10 @@ deployment_client:
     - source: salt://linux/splunk/templates/deploymentclient.conf
     - makedirs: True
     - backup: minion
-    - unless: 'test -d /opt/splunk'
+	- template: jinja
+{% if grains['id'].startswith('splunk') %}
+    - unless: 'test -d /etc'
+{% endif %}
 
 start splunk:
   cmd.run:
@@ -54,7 +58,7 @@ start splunk:
       - cmd: Splunk
       - file: user_seed
 {% if grains['id'].startswith('splunk') %}
-    - unless: 'test -d /opt/splunk'
+    - unless: 'test -d /etc'
 {% else%}
     - unless: 'service splunk status'
 {% endif %}
@@ -65,4 +69,6 @@ enable bootstart:
     - name: '/opt/splunkforwarder/bin/splunk enable boot-start'
     - require:
       - cmd: 'start splunk'
-    - unless: 'test -d /opt/splunk'
+{% if grains['id'].startswith('splunk') %}
+    - unless: 'test -d /etc'
+{% endif %}

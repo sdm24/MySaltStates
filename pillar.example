@@ -1,0 +1,26 @@
+# This pillar contains example variables that are used for the states
+# The information in this pillar can easily be changed to match your environment
+
+domain: example.com
+
+dns1: 10.1.1.1
+dns2: 10.1.1.2
+
+splunk:
+  dep: splunkdeployment.example.com
+  user: splunk
+  pass: splunkpass
+  
+ erroremail: error@example.com
+ 
+domainJoinUser: admin
+domainJoinPass: password
+
+mariadb:
+  rootpw: badpass
+ 
+# This will create the following databases in mariadb with the listed users 
+maraidb-dbs:
+  exampledb:
+    user: testuser
+	password: badpass

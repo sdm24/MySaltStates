@@ -2,7 +2,7 @@
 # It uses a template for the network settings, and gets the IP address from 1. dig on the hostname 2. current IP from VMware
 # When run, this state will include hostupdate.sls and password.sls
 
-{% set name = grains['nodename'] %}
+{% set name = grains['host'] %}
 
 {% set DNSIP = salt['dnsutil.A'](name + "." + grains['domain'])[0] %}
 

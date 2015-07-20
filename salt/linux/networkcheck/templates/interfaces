@@ -15,5 +15,5 @@ address {{ Var1 }}
 netmask 255.255.0.0
 gateway 10.1.0.1
 broadcast 10.1.255.255
-dns-nameservers 10.1.1.1 10.1.1.2
+dns-nameservers {{ pillar['dns1'] }} {{ pillar['dns2'] }}
 dns-search {{ domname }}

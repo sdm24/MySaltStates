@@ -22,4 +22,6 @@ This directory also contains state files for splunk search heads to copy their k
 
 **ntp:** This state installs and configures ntp server. It should only be run on ntp3 and ntp4
 
-**apache:** Installs apache, and manages sites & mods if set in the pillar. The manage substate should be included in the scheduled highstate to manage the apache sites and mods enabled. See [Managing Apache With Salt] (http://wiki.example.com/display/group/Managing+Apache+With+Salt) on the KB
+**apache:** Installs apache, and manages sites & mods if set in the pillar. The manage substate should be included in the scheduled highstate to manage the apache sites and mods enabled. See [Managing Apache With Salt] (http://wiki.example.com/display/SALT/Managing+Apache+With+Salt) on the KB
+
+**mariadb**: Installs mariadb and creates any databases defined in the pillar data. This state will hang when it is first run, and must be manually killed. See its README for more info.

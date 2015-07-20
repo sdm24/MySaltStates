@@ -13,6 +13,7 @@ Make user_seed:
     - name: '/opt/splunk/etc/system/local/user-seed.conf'
     - source: salt://linux/splunk/templates/userseed.conf
     - makedirs: True
+	- template: jinja
  
 Splunk Server:
   cmd.run:
@@ -33,6 +34,7 @@ Server deployment_client:
     - source: salt://linux/splunk/templates/deploymentclient.conf
     - makedirs: True
     - backup: minion
+	- template: jinja
 
 start splunk Server:
   cmd.run:

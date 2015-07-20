@@ -7,12 +7,12 @@
 base:
   '*':
     - {{ grains['kernel']|lower }}.networkcheck
-
+ 
 # The search head and indexer groups are in base because the required keys have their source in salt://(minion-id)
-  'search head:True':
+  'services:search head:True':
     - match: pillar
     - linux.splunk.searchhead
-  'indexer:True':
+  'services:indexer:True':
     - match: pillar
     - linux.splunk.indexer
 
@@ -30,23 +30,28 @@ linux:
   'salt':
     - keys.master ## Only generates SSH keys that do not exist
 
-  'pureftp:True':
+  'services:pureftp:True':
     - match: pillar
     - pureftp
 
-  'ntp:True':
+  'services:ntp:True':
     - match: pillar
     - ntp
 
-  'apache:True':  ## Only install Apache
+  'services:apache:True':  ## Only install Apache
     - match: pillar
     - apache
-  'apache:Managed': ## Manage relevant sites & mods from pillar data
+  'services:apache:Managed': ## Manage relevant sites & mods from pillar data
     - match: pillar
     - apache.manage
 
+  'services:mariadb:True':
+    - match: pillar
+    - mariadb
+
 # The windows environment is /srv/salt/windows
 windows:
-  'splunk:True':
+  'services:splunk:True':
     - match: pillar
     - splunk
+ 

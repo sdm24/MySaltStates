@@ -27,5 +27,5 @@ Set IP and DNS servers:
 Set DNS Domain:
   win_dns_client.primary_suffix:
     - name: {{ netname }}
-    - suffix: ad.example.com
+    - suffix: prod.{{ pillar['domain'] }}
     - updates: False

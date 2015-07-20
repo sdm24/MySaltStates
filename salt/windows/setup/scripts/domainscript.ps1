@@ -1,7 +1,7 @@
-$PlainPassword = "Passw)rd!"
-$SecurePassword = ConvertTo-SecureString "Passw)rd!" -AsPlainText -Force
+$PlainPassword = "{{ pillar['domainJoinPass'] }}"
+$SecurePassword = ConvertTo-SecureString "{{ pillar['domainJoinPass'] }}" -AsPlainText -Force
 
-$Credentials = New-Object System.Management.Automation.PSCredential("ad.example.com\saltad",$SecurePassword)
+$Credentials = New-Object System.Management.Automation.PSCredential("prod.{{ pillar['domain'] }}\{{ pillar['domainJoinUser'] }}",$SecurePassword)
 
-Add-Computer -DomainName ad.example.com -NewName {{ compname }} -Credential $Credentials -ComputerName . `
-  -OUPath "OU=Servers,OU=WORKGROUP,DC=ad,DC=example,DC=com"
+Add-Computer -DomainName prod.{{ pillar['domain'] }} -NewName {{ compname }} -Credential $Credentials -ComputerName . `
+  -OUPath "OU=Servers,DC=prod,DC=example,DC=com"

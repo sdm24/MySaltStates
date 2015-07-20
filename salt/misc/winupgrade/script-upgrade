@@ -1,0 +1,7 @@
+#!/bin/bash
+
+salt "$@" cp.get_file 'salt://files/windows/salt/Salt-Current.exe' 'C:\salt\upgrade.exe'
+salt "$@" cp.get_file 'salt://misc/winupgrade/upgrade-minion.cmd' 'C:\salt\upgrade-minion.cmd'
+salt "$@" cmd.run 'start C:\salt\upgrade-minion.cmd'
+sleep 75
+salt "$@" test.version

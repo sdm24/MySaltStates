@@ -4,9 +4,9 @@
 
 {% from 'variables.sls' import name, IP with context %}
 
-{% set DNSIP = salt['dnsutil.A'](name + "example.com")[0] %}
+{% set DNSIP = salt['dnsutil.A'](name + {{ pillar['domain'] }})[0] %}
 
-{% set DNSIP2 = salt['dnsutil.A'](name + ".ad.example.com")[0] %}
+{% set DNSIP2 = salt['dnsutil.A'](name + {{ pillar['domain'] }}[0] %}
 
 {% set netname = salt['network.interfaces_names']()[0] %}
 
@@ -15,8 +15,8 @@ Set IP and DNS servers:
     - name: {{ netname }}
     - dns_proto: static
     - dns_servers:
-      - 10.1.1.1
-      - 10.1.1.2
+      - {{ pillar['dns1'] }}
+      - {{ pillar['dns2'] }}
     - ip_proto: static
 {% if IP != 'desired_IP' %}
     - ip_addrs:
@@ -36,5 +36,5 @@ Set IP and DNS servers:
 Set DNS Domain:
   win_dns_client.primary_suffix:
     - name: {{ netname }}
-    - suffix: ad.example.com
+    - suffix: prod.{{ pillar['domain'] }}
     - updates: False

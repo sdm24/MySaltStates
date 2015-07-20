@@ -1,3 +1,5 @@
-This folder contains the states and other information that I use for Salt. Many of these states will have missing or changed lines/files, because they contain sensitive information that I do not want to be public.
+This folder contains the states and other information that are on the salt master. Click on a folder to learn more about its contents.
 
-The purpose of this repo is to display my Salt states without having to worry about revealing sensitive information
+**Salt** contains the state files and their requisites. The **top.sls** file is the main file that runs other state files. Most states are located in the **linux** or **windows** subdirectories.
+
+For information on using salt, look at the "Salt Basics" on the Server team KB: http://wiki.example.com/display/SALT/Salt+Basics

@@ -1,0 +1,4 @@
+{{ grains['fqdn'] }}
+
+## This file is managed by Salt!!
+## Any changes will be overwritten!!

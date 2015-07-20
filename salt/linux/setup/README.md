@@ -1,6 +1,6 @@
 This folder contains the "setup" state file and templates
 
-see http://wiki.example.com/display/Group/Setting+Up+a+New+VM+with+Salt for instructions on how to use this state
+see http://wiki.example.com/display/SALT/Setting+Up+a+New+VM+with+Salt for instructions on how to use this state
 
 **init.sls**: This is the main file that is needed to run "salt-call ... setup". It will configure the IP address of the minion and also run "hostupdate", which will configure the hostname.
 This scipt will set the IP of the machine using this priority: 1. Manually editing the "IP" value in **variables.sls** 2. Result from dig hostname 3. IP set automatically in VMware
